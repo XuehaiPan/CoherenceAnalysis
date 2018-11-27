@@ -2,7 +2,7 @@ import os
 import json
 
 
-data_dir = '/Users/PanXuehai/Desktop/Computer Science/Web Data Mining/Coherence Analysis/'
+data_dir = './data/'
 data_file_path = {
     name: os.path.join(data_dir, '{}_data'.format(name))
     for name in ('train', 'valid', 'test')
