@@ -1,16 +1,10 @@
-import os
 from gensim.models import Word2Vec, KeyedVectors
-
-
-VEC_SIZE = 128
-
-MODEL_DIR = './models/'
-LAST_MODEL_PATH = os.path.join(MODEL_DIR, 'word2vec.model')
+from Config import VEC_SIZE, WORD2VEC_MODEL_PATH
 
 
 def get_word2vec_model():
     try:
-        return KeyedVectors.load(LAST_MODEL_PATH)
+        return KeyedVectors.load(WORD2VEC_MODEL_PATH)
     except OSError:
         pass
     
@@ -32,8 +26,8 @@ def get_word2vec_model():
         
         def on_epoch_end(self, model):
             print('Epoch #{} end'.format(self.epoch))
-            print('Save model to {}'.format(LAST_MODEL_PATH))
-            model.wv.save(LAST_MODEL_PATH)
+            print('Save model to {}'.format(WORD2VEC_MODEL_PATH))
+            model.wv.save(WORD2VEC_MODEL_PATH)
     
     sentences = []
     sentences.extend(map(lambda tokensLabel: tokensLabel[0], words_labels_generator(dataset = 'train')))
@@ -45,9 +39,9 @@ def get_word2vec_model():
     model = Word2Vec(sentences = sentences, size = VEC_SIZE, min_count = 1, workers = 4)
     model.train(sentences = sentences, total_examples = len(sentences), epochs = 40, callbacks = [epoch_logger])
     
-    model.wv.save(LAST_MODEL_PATH)
+    model.wv.save(WORD2VEC_MODEL_PATH)
     
-    return KeyedVectors.load(LAST_MODEL_PATH)
+    return KeyedVectors.load(WORD2VEC_MODEL_PATH)
 
 
 def main():

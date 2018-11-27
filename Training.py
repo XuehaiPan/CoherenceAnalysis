@@ -1,9 +1,11 @@
 import numpy as np
 from tensorflow import keras
 from DataSet import words_labels_generator
-from Word2Vec import get_word2vec_model, VEC_SIZE
-from Model import get_model_paths, build_network, BATCH_SIZE, SEQ_LEN, \
-    LOG_DIR, MODEL_FMT_STR, MODEL_FILE_PATTERN, LATEST_MODEL_PATH, LOG_FILE_PATH
+from Config import BATCH_SIZE, VEC_SIZE, SEQ_LEN, \
+    MODEL_FMT_STR, MODEL_FILE_PATTERN, LATEST_MODEL_PATH, \
+    LOG_DIR, LOG_FILE_PATH
+from Word2Vec import get_word2vec_model
+from Model import get_model_paths, build_network
 
 
 def vector_label_generator(dataset):

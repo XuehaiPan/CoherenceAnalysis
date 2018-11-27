@@ -1,23 +1,7 @@
 import os
-import re
 from glob import glob
 from tensorflow import keras
-from Word2Vec import VEC_SIZE
-
-
-os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'
-
-BATCH_SIZE = 64
-SEQ_LEN = 320
-
-MODEL_DIR = './models/'
-LOG_DIR = './logs/'
-
-LATEST_MODEL_PATH = os.path.join(MODEL_DIR, 'latest.h5')
-LOG_FILE_PATH = os.path.join(LOG_DIR, 'log.csv')
-
-MODEL_FILE_PATTERN = re.compile(r'.*epoch(?P<epoch>\d*)_acc(?P<val_acc>[\d.]*)\.h5')
-MODEL_FMT_STR = os.path.join(MODEL_DIR, 'epoch{epoch:02d}_acc{val_acc:.4f}.h5')
+from Config import VEC_SIZE, SEQ_LEN, MODEL_DIR, LATEST_MODEL_PATH, MODEL_FILE_PATTERN
 
 
 def get_model_paths(sortby = 'epoch', reverse = False):

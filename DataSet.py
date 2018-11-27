@@ -1,16 +1,6 @@
 import os
 import json
-
-
-data_dir = './data/'
-data_file_path = {
-    name: os.path.join(data_dir, '{}_data'.format(name))
-    for name in ('train', 'valid', 'test')
-}
-
-POSITIVE = 1
-NEGATIVE = 0
-UNDEFINED = -1
+from Config import DATA_FILE_PATH, FIGURE_DIR, POSITIVE
 
 
 def tokenize(sentence):
@@ -18,7 +8,7 @@ def tokenize(sentence):
 
 
 def words_labels_generator(dataset):
-    with open(file = data_file_path[dataset], encoding = 'UTF-8') as file:
+    with open(file = DATA_FILE_PATH[dataset], encoding = 'UTF-8') as file:
         decoder = json.JSONDecoder()
         for line in file:
             data = decoder.decode(s = line)
@@ -98,7 +88,7 @@ def main():
     axes[1, 1].set_title('Sequence Length in All Data')
     
     fig.tight_layout()
-    fig.savefig(fname = './data_dist.png')
+    fig.savefig(fname = os.path.join(FIGURE_DIR, 'data_dist.png'))
     fig.show()
 
 

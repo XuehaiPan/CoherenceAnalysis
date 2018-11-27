@@ -1,7 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
-from Model import get_model_paths, build_network, BATCH_SIZE, LOG_FILE_PATH
+from Config import BATCH_SIZE, LOG_FILE_PATH
+from Model import get_model_paths, build_network
 from Training import get_all_vectors_labels
 
 
