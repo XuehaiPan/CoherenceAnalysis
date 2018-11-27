@@ -14,7 +14,7 @@ SEQ_LEN = 320
 
 DATA_DIR = './data/'
 DATA_FILE_PATH = {
-    name: os.path.join(DATA_DIR, '{}_data'.format(name))
+    name: os.path.join(DATA_DIR, f'{name}_data')
     for name in ('train', 'valid', 'test')
 }
 

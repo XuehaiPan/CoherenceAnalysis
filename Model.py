@@ -18,7 +18,7 @@ def build_network(model_path = None):
         try:
             model_paths = get_model_paths(sortby = 'val_acc', reverse = True)
             model_path = model_paths[0]
-            print('best_model_path = {}'.format(model_path))
+            print(f'best_model_path = {model_path}')
         except IndexError:
             model_path = LATEST_MODEL_PATH
     

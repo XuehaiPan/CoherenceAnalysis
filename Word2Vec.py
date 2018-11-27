@@ -22,11 +22,11 @@ def get_word2vec_model():
         
         def on_epoch_begin(self, model):
             self.epoch += 1
-            print('Epoch #{} start'.format(self.epoch))
+            print(f'Epoch #{self.epoch} start')
         
         def on_epoch_end(self, model):
-            print('Epoch #{} end'.format(self.epoch))
-            print('Save model to {}'.format(WORD2VEC_MODEL_PATH))
+            print(f'Epoch #{self.epoch} end')
+            print(f'Save model to {WORD2VEC_MODEL_PATH}')
             model.wv.save(WORD2VEC_MODEL_PATH)
     
     sentences = []

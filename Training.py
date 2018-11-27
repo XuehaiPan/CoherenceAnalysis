@@ -60,8 +60,8 @@ def train(epochs):
     
     model = build_network(model_path = initial_model_path)
     try:
-        print('initial_epoch = {}'.format(initial_epoch))
-        print('initial_model_path = {}'.format(initial_model_path))
+        print(f'initial_epoch = {initial_epoch}')
+        print(f'initial_model_path = {initial_model_path}')
         model.fit(x = train_vectors, y = train_labels,
                   batch_size = BATCH_SIZE, epochs = epochs, initial_epoch = initial_epoch,
                   validation_data = (valid_vectors, valid_labels), shuffle = True,
