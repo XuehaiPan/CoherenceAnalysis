@@ -1,8 +1,9 @@
+from typing import List
 from gensim.models import Word2Vec, KeyedVectors
 from Config import VEC_SIZE, WORD2VEC_MODEL_PATH
 
 
-def get_word2vec_model():
+def get_word2vec_model() -> KeyedVectors:
     try:
         return KeyedVectors.load(WORD2VEC_MODEL_PATH)
     except OSError:
@@ -29,14 +30,14 @@ def get_word2vec_model():
             print(f'Save model to {WORD2VEC_MODEL_PATH}')
             model.wv.save(WORD2VEC_MODEL_PATH)
     
-    sentences = []
+    sentences: List[List[str]] = []
     sentences.extend(map(lambda tokensLabel: tokensLabel[0], words_labels_generator(dataset = 'train')))
     sentences.extend(map(lambda tokensLabel: tokensLabel[0], words_labels_generator(dataset = 'valid')))
     sentences.extend(map(lambda tokensLabel: tokensLabel[0], words_labels_generator(dataset = 'test')))
     
     epoch_logger = EpochLogger()
     
-    model = Word2Vec(sentences = sentences, size = VEC_SIZE, min_count = 1, workers = 4)
+    model: Word2Vec = Word2Vec(sentences = sentences, size = VEC_SIZE, min_count = 1, workers = 4)
     model.train(sentences = sentences, total_examples = len(sentences), epochs = 40, callbacks = [epoch_logger])
     
     model.wv.save(WORD2VEC_MODEL_PATH)
@@ -44,7 +45,7 @@ def get_word2vec_model():
     return KeyedVectors.load(WORD2VEC_MODEL_PATH)
 
 
-def main():
+def main() -> None:
     get_word2vec_model()
 
 

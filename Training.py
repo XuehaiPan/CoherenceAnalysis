@@ -1,3 +1,4 @@
+from typing import List, Tuple
 import numpy as np
 from tensorflow import keras
 from DataSet import words_labels_generator
@@ -8,27 +9,27 @@ from Word2Vec import get_word2vec_model
 from Model import get_model_paths, build_network
 
 
-def vector_label_generator(dataset):
+def vector_label_generator(dataset: str) -> Tuple[np.ndarray, np.ndarray]:
     word2vec = get_word2vec_model()
     for words, label in words_labels_generator(dataset = dataset):
-        vectors = np.zeros(shape = (SEQ_LEN, VEC_SIZE), dtype = np.float32)
+        vectors: np.ndarray = np.zeros(shape = (SEQ_LEN, VEC_SIZE), dtype = np.float32)
         for i, word in zip(range(SEQ_LEN), words):
             vectors[i] = word2vec.get_vector(word)
         yield vectors, np.array([label], dtype = np.int32)
 
 
-def get_all_vectors_labels(dataset):
-    vectors = []
-    labels = []
+def get_all_vectors_labels(dataset: str) -> Tuple[np.ndarray, np.ndarray]:
+    vectors: List[np.ndarray] = []
+    labels: List[np.ndarray] = []
     for vector, label in vector_label_generator(dataset = dataset):
         vectors.append(vector)
         labels.append(label)
-    vectors = np.array(vectors, dtype = np.float32)
-    labels = np.array(labels, dtype = np.int32)
+    vectors: np.ndarray = np.array(vectors, dtype = np.float32)
+    labels: np.ndarray = np.array(labels, dtype = np.int32)
     return vectors, labels
 
 
-def train(epochs):
+def train(epochs: int) -> None:
     train_vectors, train_labels = get_all_vectors_labels(dataset = 'train')
     valid_vectors, valid_labels = get_all_vectors_labels(dataset = 'valid')
     
@@ -73,7 +74,7 @@ def train(epochs):
         model.save(filepath = LATEST_MODEL_PATH)
 
 
-def main():
+def main() -> None:
     train(epochs = 40)
 
 

@@ -1,19 +1,20 @@
 import os
+from typing import List
 from glob import glob
 from tensorflow import keras
 from Config import VEC_SIZE, SEQ_LEN, MODEL_DIR, LATEST_MODEL_PATH, MODEL_FILE_PATTERN
 
 
-def get_model_paths(sortby = 'epoch', reverse = False):
+def get_model_paths(sortby: str = 'epoch', reverse: bool = False) -> List[str]:
     assert sortby in ('epoch', 'acc', 'val_acc')
     if 'acc' in sortby:
         sortby = 'val_acc'
-    model_paths = glob(pathname = os.path.join(MODEL_DIR, 'epoch*_acc*.h5'))
+    model_paths: List[str] = glob(pathname = os.path.join(MODEL_DIR, 'epoch*_acc*.h5'))
     model_paths.sort(key = lambda file: float(MODEL_FILE_PATTERN.match(file).group(sortby)), reverse = reverse)
     return model_paths
 
 
-def build_network(model_path = None):
+def build_network(model_path: str = None) -> keras.Model:
     if model_path is None:
         try:
             model_paths = get_model_paths(sortby = 'val_acc', reverse = True)
