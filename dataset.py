@@ -1,7 +1,7 @@
 import os
 from typing import Dict, List, Tuple
 import json
-from Config import DATA_FILE_PATH, FIGURE_DIR, POSITIVE
+from config import DATA_FILE_PATH, FIGURE_DIR, POSITIVE
 
 
 def tokenize(sentence: str) -> List[str]:

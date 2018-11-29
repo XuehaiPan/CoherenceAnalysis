@@ -4,9 +4,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 from tensorflow import keras
-from Config import BATCH_SIZE, LOG_FILE_PATH, FIGURE_DIR
-from Model import get_model_paths, build_network
-from Training import get_all_vectors_labels
+from config import BATCH_SIZE, LOG_FILE_PATH, FIGURE_DIR
+from model import get_model_paths, build_network
+from training import get_all_vectors_labels
 
 
 def draw_train_logs() -> None:

@@ -1,12 +1,12 @@
 from typing import List, Tuple
 import numpy as np
 from tensorflow import keras
-from DataSet import words_labels_generator
-from Config import BATCH_SIZE, VEC_SIZE, SEQ_LEN, \
+from dataset import words_labels_generator
+from config import BATCH_SIZE, VEC_SIZE, SEQ_LEN, \
     MODEL_FMT_STR, MODEL_FILE_PATTERN, LATEST_MODEL_PATH, \
     LOG_DIR, LOG_FILE_PATH
-from Word2Vec import get_word2vec_model
-from Model import get_model_paths, build_network
+from word2vec import get_word2vec_model
+from model import get_model_paths, build_network
 
 
 def vector_label_generator(dataset: str) -> Tuple[np.ndarray, np.ndarray]:

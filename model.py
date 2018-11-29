@@ -2,7 +2,7 @@ import os
 from typing import List
 from glob import glob
 from tensorflow import keras
-from Config import VEC_SIZE, SEQ_LEN, MODEL_DIR, LATEST_MODEL_PATH, MODEL_FILE_PATTERN
+from config import VEC_SIZE, SEQ_LEN, MODEL_DIR, LATEST_MODEL_PATH, MODEL_FILE_PATTERN
 
 
 def get_model_paths(sortby: str = 'epoch', reverse: bool = False) -> List[str]:

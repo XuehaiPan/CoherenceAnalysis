@@ -1,6 +1,6 @@
 from typing import List
 from gensim.models import Word2Vec, KeyedVectors
-from Config import VEC_SIZE, WORD2VEC_MODEL_PATH
+from config import VEC_SIZE, WORD2VEC_MODEL_PATH
 
 
 def get_word2vec_model() -> KeyedVectors:
@@ -9,7 +9,7 @@ def get_word2vec_model() -> KeyedVectors:
     except OSError:
         pass
     
-    from DataSet import words_labels_generator
+    from dataset import words_labels_generator
     from gensim.models.callbacks import CallbackAny2Vec
     
     class EpochLogger(CallbackAny2Vec):
